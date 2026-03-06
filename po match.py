@@ -337,16 +337,17 @@ else:
         render_interactive_dn_table(vim_df)
 
     csv_parts = []
-    if not insider_df.empty:
-        csv_parts.append("INSIDER\n" + insider_df.to_csv(index=False))
-    if not vim_df.empty:
-        csv_parts.append("VIM\n" + vim_df.to_csv(index=False))
-    csv_data = ("
-".join(csv_parts)).encode("utf-8")
+if not insider_df.empty:
+    csv_parts.append("INSIDER\n" + insider_df.to_csv(index=False))
+if not vim_df.empty:
+    csv_parts.append("VIM\n" + vim_df.to_csv(index=False))
 
-    st.download_button(
-        label="Download CSV",
-        data=csv_data,
-        file_name="po_dn_status_by_fc.csv",
-        mime="text/csv",
-    )
+csv_data = ("\n".join(csv_parts)).encode("utf-8")
+
+st.download_button(
+    label="Download CSV",
+    data=csv_data,
+    file_name="po_dn_status_by_fc.csv",
+    mime="text/csv",
+)
+
