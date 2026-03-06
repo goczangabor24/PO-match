@@ -337,8 +337,10 @@ else:
         render_interactive_dn_table(vim_df)
 
     csv_parts = []
+
 if not insider_df.empty:
     csv_parts.append("INSIDER\n" + insider_df.to_csv(index=False))
+
 if not vim_df.empty:
     csv_parts.append("VIM\n" + vim_df.to_csv(index=False))
 
